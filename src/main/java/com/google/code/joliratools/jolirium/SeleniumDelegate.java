@@ -1,5 +1,8 @@
 package com.google.code.joliratools.jolirium;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
 
@@ -258,6 +261,20 @@ class SeleniumDelegate implements Jolirium {
     public String[] getAttributeFromAllWindows(final String attributeName) {
         check();
         return selenium.getAttributeFromAllWindows(attributeName);
+    }
+
+    private String getBaseUrl(final String url) {
+        try {
+            final URL _url = new URL(url);
+            final int _port = _url.getPort();
+            final String host = _url.getHost();
+            final String prot = _url.getProtocol();
+            final URL base = new URL(prot, host, _port, "/");
+
+            return base.toExternalForm();
+        } catch (final MalformedURLException e) {
+            throw new Error("invalid URL " + url, e);
+        }
     }
 
     public String getBodyText() {
@@ -603,7 +620,9 @@ class SeleniumDelegate implements Jolirium {
         checkClosed();
 
         if (selenium == null) {
-            selenium = new DefaultSelenium("localhost", port, browser, url);
+            final String baseUrl = getBaseUrl(url);
+
+            selenium = new DefaultSelenium("localhost", port, browser, baseUrl);
 
             selenium.start();
         }

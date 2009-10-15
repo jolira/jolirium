@@ -32,6 +32,7 @@ final class EmbeddedServer {
 
             if (profile != null) {
                 config.setProfilesLocation(profile);
+                config.setFirefoxProfileTemplate(profile);
             }
 
             final int port = getNextPortNumber();

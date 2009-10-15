@@ -43,6 +43,14 @@ public class JoliriumServer {
         this(CHROME, null);
     }
 
+    public JoliriumServer(final File profile) {
+        this(CHROME, profile);
+    }
+
+    public JoliriumServer(final String browser) {
+        this(browser, null);
+    }
+
     public JoliriumServer(final String browser, final File profile) {
         this.browser = browser;
         this.profile = profile;
