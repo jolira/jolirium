@@ -10,7 +10,7 @@
   <packaging>jar</packaging>
   <version>1.0.0-SNAPSHOT</version>
   <name>jolirium</name>
-  <url>http://maven.apache.org</url>
+  <url>http://code.google.com/p/jolira-tools/wiki/jolirium</url>
   <description>Reusable Code for Selenium</description>
 
   <licenses>
@@ -26,8 +26,6 @@
     <developerConnection>scm:svn:https://jolira-tools.googlecode.com/svn/jolirium/trunk</developerConnection>
     <url>http://jolira-tools.googlecode.com/svn/jolirium/trunk</url>
   </scm>
-
-  <url>http://code.google.com/p/jolira-tools/wiki/jolirium</url>
 
   <developers>
         <developer>
