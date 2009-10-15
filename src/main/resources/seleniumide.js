@@ -1,5 +1,5 @@
 /*
- * Format for Selenium Remote Control Java client (TestNG)
+ * Format for Jolirium
  */
 
 load('java-rc.js');
@@ -26,8 +26,8 @@ options.header =
 	"import java.util.regex.Pattern;\n" +
 	"\n" +
     "public class ${className} {\n" + 
-    "\tprivate Jolirium selenium;\n"
-    "\n"
+    "\tprivate Jolirium selenium;\n" +
+    "\n" +
     "\t@BeforeMethod(alwaysRun = true)\n"+
     "\t@Parameters( { \"browser\", \"profile\" })\n" +
     "\tpublic void setupBrowser(final String browser, final String profile) {\n" +
