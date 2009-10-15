@@ -28,28 +28,7 @@ final class EmbeddedServer {
                 return existing;
             }
 
-            final RemoteControlConfiguration config = new RemoteControlConfiguration();
-
-            if (profile != null) {
-                config.setProfilesLocation(profile);
-                config.setFirefoxProfileTemplate(profile);
-            }
-
-            final int port = getNextPortNumber();
-
-            config.setPort(port);
-            config.setSingleWindow(true);
-            config.setTrustAllSSLCertificates(true);
-
-            final SeleniumServer svr = getServer(config);
-
-            try {
-                svr.start();
-            } catch (final Exception e) {
-                throw new RuntimeException(e);
-            }
-
-            final EmbeddedServer server = new EmbeddedServer(path, svr);
+            final EmbeddedServer server = new EmbeddedServer(path, profile);
 
             serverByProfile.put(path, server);
 
@@ -89,12 +68,14 @@ final class EmbeddedServer {
 
     private final Object counterLock = new Object();
 
-    private final SeleniumServer svr;
+    private SeleniumServer server = null;
     private final String id;
+    private final File profile;
+    private final int port = getNextPortNumber();
 
-    private EmbeddedServer(final String id, final SeleniumServer svr) {
+    private EmbeddedServer(final String id, final File profile) {
         this.id = id;
-        this.svr = svr;
+        this.profile = profile;
     }
 
     public void clientDidClose() {
@@ -111,6 +92,8 @@ final class EmbeddedServer {
 
     void clientWillOpen() {
         synchronized (counterLock) {
+            start();
+
             counter++;
         }
     }
@@ -122,10 +105,41 @@ final class EmbeddedServer {
     }
 
     int getPort() {
-        return svr.getPort();
+        return port;
+    }
+
+    private void start() {
+        if (server != null) {
+            return;
+        }
+
+        final RemoteControlConfiguration config = new RemoteControlConfiguration();
+
+        if (profile != null) {
+            config.setProfilesLocation(profile);
+            config.setFirefoxProfileTemplate(profile);
+        }
+
+        config.setPort(port);
+        config.setSingleWindow(true);
+        config.setTrustAllSSLCertificates(true);
+
+        final SeleniumServer svr = getServer(config);
+
+        try {
+            svr.start();
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        server = svr;
     }
 
     private void stop() {
-        svr.stop();
+        final SeleniumServer svr = server;
+
+        if (svr != null) {
+            svr.stop();
+        }
     }
 }

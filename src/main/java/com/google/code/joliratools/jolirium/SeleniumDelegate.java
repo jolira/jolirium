@@ -11,10 +11,12 @@ class SeleniumDelegate implements Jolirium {
     private boolean isClosed = false;
     private final int port;
     private final String browser;
+    private final URL baseURL;
 
-    SeleniumDelegate(final int port, final String browser) {
+    SeleniumDelegate(final int port, final String browser, final URL baseURL) {
         this.port = port;
         this.browser = browser;
+        this.baseURL = baseURL;
     }
 
     public void addCustomRequestHeader(final String key, final String value) {
@@ -264,6 +266,10 @@ class SeleniumDelegate implements Jolirium {
     }
 
     private String getBaseUrl(final String url) {
+        if (baseURL != null) {
+            return baseURL.toExternalForm();
+        }
+
         try {
             final URL _url = new URL(url);
             final int _port = _url.getPort();
@@ -273,7 +279,8 @@ class SeleniumDelegate implements Jolirium {
 
             return base.toExternalForm();
         } catch (final MalformedURLException e) {
-            throw new Error("invalid URL " + url, e);
+            throw new Error("invalid URL " + url
+                    + "; please specify a base-URL", e);
         }
     }
 

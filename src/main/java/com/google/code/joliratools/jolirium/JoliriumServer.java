@@ -11,6 +11,7 @@
 package com.google.code.joliratools.jolirium;
 
 import java.io.File;
+import java.net.URL;
 
 import org.openqa.selenium.server.SeleniumServer;
 
@@ -21,7 +22,7 @@ import org.openqa.selenium.server.SeleniumServer;
  * 
  */
 public class JoliriumServer {
-    private static final String CHROME = "*chrome";
+    public static final String DEFAULT_BROWSER = "*chrome";
 
     /**
      * Set the next port number to be used for embedded servers. If this method
@@ -39,21 +40,29 @@ public class JoliriumServer {
 
     private final File profile;
 
+    private final URL baseURL;
+
     public JoliriumServer() {
-        this(CHROME, null);
+        this(DEFAULT_BROWSER, null, null);
     }
 
     public JoliriumServer(final File profile) {
-        this(CHROME, profile);
+        this(DEFAULT_BROWSER, profile, null);
     }
 
     public JoliriumServer(final String browser) {
-        this(browser, null);
+        this(browser, null, null);
     }
 
     public JoliriumServer(final String browser, final File profile) {
+        this(browser, profile, null);
+    }
+
+    public JoliriumServer(final String browser, final File profile,
+            final URL baseURL) {
         this.browser = browser;
         this.profile = profile;
+        this.baseURL = baseURL;
     }
 
     public synchronized Jolirium getJolirium() {
@@ -62,7 +71,7 @@ public class JoliriumServer {
 
         server.clientWillOpen();
 
-        return new SeleniumDelegate(port, browser) {
+        return new SeleniumDelegate(port, browser, baseURL) {
             @Override
             public void close() {
                 try {
