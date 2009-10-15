@@ -21,6 +21,22 @@
     </license>
   </licenses>
   
+  <scm>
+    <connection>scm:svn:http://jolira-tools.googlecode.com/svn/jolirium/trunk</connection>
+    <developerConnection>scm:svn:https://jolira-tools.googlecode.com/svn/jolirium/trunk</developerConnection>
+    <url>http://jolira-tools.googlecode.com/svn/jolirium/trunk</url>
+  </scm>
+
+  <url>http://code.google.com/p/jolira-tools/wiki/jolirium</url>
+
+  <developers>
+        <developer>
+            <id>jfk</id>
+            <name>Joachim Kainz</name>
+            <email>jfk@jolira.com</email>
+        </developer>
+    </developers>
+
   <dependencies>
   	<dependency>
   		<groupId>org.seleniumhq.selenium.server</groupId>
