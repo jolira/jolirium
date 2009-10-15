@@ -22,9 +22,22 @@ import org.openqa.selenium.server.SeleniumServer;
  */
 public class JoliriumServer {
     private static final String CHROME = "*chrome";
+
+    /**
+     * Set the next port number to be used for embedded servers. If this method
+     * is not called the initial number is {@literal 14444} and the number is
+     * incremented every time a new embedded server has to be constructed.
+     * 
+     * @param portNumber
+     *            the next port number to be used.
+     */
+    public static void setNextPortNumber(final int portNumber) {
+        EmbeddedServer.setNextPortNumber(portNumber);
+    }
+
     private final String browser;
+
     private final File profile;
-    private final Jolirium cached = null;
 
     public JoliriumServer() {
         this(CHROME, null);
@@ -36,13 +49,20 @@ public class JoliriumServer {
     }
 
     public synchronized Jolirium getJolirium() {
-        final Selenium x;
-        
-        final x.
-        final EmbeddedServer server = EmbeddedServer
-                .getServer(browser, profile);
+        final EmbeddedServer server = EmbeddedServer.getServer(profile);
         final int port = server.getPort();
 
-        return null;
+        server.clientWillOpen();
+
+        return new SeleniumDelegate(port, browser) {
+            @Override
+            public void close() {
+                try {
+                    super.close();
+                } finally {
+                    server.clientDidClose();
+                }
+            }
+        };
     }
 }
