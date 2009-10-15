@@ -12,7 +12,6 @@
   <name>jolirium</name>
   <url>http://code.google.com/p/jolira-tools/wiki/jolirium</url>
   <description>Reusable Code for Selenium</description>
-
   <licenses>
     <license>
       <name>GNU GENERAL PUBLIC LICENSE Version 3</name>
@@ -20,36 +19,41 @@
       <comments>Copyright (C) 2009 jolira</comments>
     </license>
   </licenses>
-  
   <scm>
     <connection>scm:svn:http://jolira-tools.googlecode.com/svn/jolirium/trunk</connection>
     <developerConnection>scm:svn:https://jolira-tools.googlecode.com/svn/jolirium/trunk</developerConnection>
     <url>http://jolira-tools.googlecode.com/svn/jolirium/trunk</url>
   </scm>
-
   <developers>
-        <developer>
-            <id>jfk</id>
-            <name>Joachim Kainz</name>
-            <email>jfk@jolira.com</email>
-        </developer>
-    </developers>
-
+    <developer>
+      <id>jfk</id>
+      <name>Joachim Kainz</name>
+      <email>jfk@jolira.com</email>
+    </developer>
+  </developers>
   <dependencies>
+  	<dependency>
+          <groupId>org.seleniumhq.selenium.client-drivers</groupId>
+          <artifactId>selenium-java-client-driver</artifactId>
+          <version>1.0.1</version>
+  	</dependency>
   	<dependency>
   		<groupId>org.seleniumhq.selenium.server</groupId>
   		<artifactId>selenium-server</artifactId>
   		<version>1.0.1</version>
-  		<type>jar</type>
-  		<optional>false</optional>
   	</dependency>
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
   		<version>4.6</version>
-  		<type>jar</type>
-  		<scope>test</scope>
   		<optional>false</optional>
   	</dependency>
   </dependencies>
+  <repositories>
+    <repository>  
+      <id>jolira-tools-repo</id>
+      <name>Jolira-Tools Maven Repository</name>
+      <url>http://jolira-tools.googlecode.com/svn/maven/repo</url>
+    </repository>  
+  </repositories>
 </project>

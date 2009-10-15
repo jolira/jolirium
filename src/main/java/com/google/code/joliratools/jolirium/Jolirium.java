@@ -15,6 +15,6 @@ package com.google.code.joliratools.jolirium;
  * 
  * @author Joachim F. Kainz
  */
-public interface Selenium {
+public interface Jolirium {
     // TODO
 }
