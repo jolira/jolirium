@@ -21,7 +21,6 @@ options.header =
 	"import com.thoughtworks.selenium.*;\n" +
 	"import org.testng.annotations.*;\n" +
 	"import com.google.code.joliratools.jolirium.*;\n" +
-	"import com.wm.mobile.regression.utils.*;\n" +
 	"import static org.testng.Assert.*;\n" +
 	"import java.util.regex.Pattern;\n" +
 	"\n" +
@@ -31,6 +30,6 @@ options.header =
     "\t@BeforeMethod(alwaysRun = true)\n"+
     "\t@Parameters( { \"browser\", \"profile\" })\n" +
     "\tpublic void setupBrowser(final String browser, final String profile) {\n" +
-    "\t\selenium = MobileTestUtil.getJollirium(browser, profile);\n" +
+    "\t\selenium = JoliriumServer(browser, new File(profile)).getJollirium(browser, profile);\n" +
     "\t}\n" +
     "\t@Test public void ${methodName}() throws Exception {\n";
