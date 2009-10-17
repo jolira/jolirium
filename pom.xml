@@ -3,7 +3,7 @@
   <parent>
     <artifactId>superpom</artifactId>
     <groupId>com.google.code.joliratools</groupId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
   </parent>
   <artifactId>jolirium</artifactId>
   <packaging>jar</packaging>
