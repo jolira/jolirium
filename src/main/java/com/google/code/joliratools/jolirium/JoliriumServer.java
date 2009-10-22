@@ -69,16 +69,47 @@ public class JoliriumServer {
         final EmbeddedServer server = EmbeddedServer.getServer(profile);
         final int port = server.getPort();
 
-        server.clientWillOpen();
-
         return new SeleniumDelegate(port, browser, baseURL) {
+            private boolean open = false;
+
             @Override
             public void close() {
-                try {
-                    super.close();
-                } finally {
+                if (open) {
+                    try {
+                        super.close();
+                    } finally {
+                        doClose();
+                    }
+                }
+            }
+
+            private void doClose() {
+                synchronized (server) {
                     server.clientDidClose();
                 }
+            }
+
+            private void doOpen() {
+                synchronized (server) {
+                    if (!open) {
+                        server.clientWillOpen();
+                        open = true;
+                    }
+                }
+            }
+
+            @Override
+            public synchronized void open(final String url) {
+                doOpen();
+
+                super.open(url);
+            }
+
+            @Override
+            public void openWindow(final String url, final String windowID) {
+                doOpen();
+
+                super.openWindow(url, windowID);
             }
         };
     }
