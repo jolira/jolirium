@@ -5,12 +5,14 @@
     <groupId>com.google.code.joliratools</groupId>
     <version>1.0.1</version>
   </parent>
+
   <artifactId>jolirium</artifactId>
   <packaging>jar</packaging>
   <version>1.0.2-SNAPSHOT</version>
   <name>jolirium</name>
   <url>http://code.google.com/p/jolira-tools/wiki/jolirium</url>
   <description>Reusable Code for Selenium</description>
+
   <licenses>
     <license>
       <name>GNU GENERAL PUBLIC LICENSE Version 3</name>
@@ -18,11 +20,13 @@
       <comments>Copyright (C) 2009 jolira</comments>
     </license>
   </licenses>
+
   <scm>
     <connection>scm:svn:http://jolira-tools.googlecode.com/svn/jolirium/trunk</connection>
     <developerConnection>scm:svn:https://jolira-tools.googlecode.com/svn/jolirium/trunk</developerConnection>
     <url>http://jolira-tools.googlecode.com/svn/jolirium/trunk</url>
   </scm>
+
   <developers>
     <developer>
       <id>jfk</id>
@@ -30,6 +34,7 @@
       <email>jfk@jolira.com</email>
     </developer>
   </developers>
+
   <dependencies>
   	<dependency>
           <groupId>org.seleniumhq.selenium.client-drivers</groupId>
@@ -48,6 +53,7 @@
   		<optional>false</optional>
   	</dependency>
   </dependencies>
+
   <repositories>
     <repository>  
       <id>jolira-tools-repo</id>
