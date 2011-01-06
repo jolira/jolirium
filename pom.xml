@@ -1,41 +1,47 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>superpom</artifactId>
     <groupId>com.jolira</groupId>
     <version>1.0.7</version>
   </parent>
-
   <artifactId>jolirium</artifactId>
   <packaging>jar</packaging>
   <version>1.0.3-SNAPSHOT</version>
   <name>jolirium</name>
   <url>http://code.google.com/p/jolira-tools/wiki/jolirium</url>
   <description>Reusable Code for Selenium</description>
-
   <scm>
     <connection>scm:svn:http://jolira-tools.googlecode.com/svn/jolirium/trunk</connection>
     <developerConnection>scm:svn:https://jolira-tools.googlecode.com/svn/jolirium/trunk</developerConnection>
     <url>http://jolira-tools.googlecode.com/svn/jolirium/trunk</url>
   </scm>
-
+  <properties>
+    <selenium-version>2.0b1</selenium-version>
+  </properties>
   <dependencies>
-  	<dependency>
-          <groupId>org.seleniumhq.selenium.client-drivers</groupId>
-          <artifactId>selenium-java-client-driver</artifactId>
-          <version>1.0.2</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.seleniumhq.selenium</groupId>
-  		<artifactId>selenium-server</artifactId>
-  		<version>2.0a2</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>junit</groupId>
-  		<artifactId>junit</artifactId>
-  		<version>4.8.1</version>
-  		<optional>false</optional>
-  	</dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium</artifactId>
+      <version>${selenium-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-chrome-driver</artifactId>
+      <version>${selenium-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-server</artifactId>
+      <version>${selenium-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.2</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
-
