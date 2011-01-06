@@ -8,7 +8,13 @@ import java.security.ProtectionDomain;
 
 import org.junit.Test;
 
+/**
+ * @author jfk
+ */
 public class JoliriumServerTest {
+    /**
+     * @throws IOException
+     */
     @Test
     public void testBasic() throws IOException {
         JoliriumServer.setNextPortNumber(14567);
@@ -28,12 +34,14 @@ public class JoliriumServerTest {
         System.out.println(path);
     }
 
+    /**
+     * @throws IOException
+     */
     @Test
     public void testProfile() throws IOException {
         JoliriumServer.setNextPortNumber(14567);
 
-        final ProtectionDomain pd = JoliriumServerTest.class
-                .getProtectionDomain();
+        final ProtectionDomain pd = JoliriumServerTest.class.getProtectionDomain();
         final CodeSource cs = pd.getCodeSource();
         final URL location = cs.getLocation();
         final String _file = location.getFile();
@@ -54,19 +62,20 @@ public class JoliriumServerTest {
         System.out.println(path);
     }
 
+    /**
+     * @throws IOException
+     */
     @Test
     public void testProfileWithBaseURL() throws IOException {
         JoliriumServer.setNextPortNumber(14567);
 
-        final ProtectionDomain pd = JoliriumServerTest.class
-                .getProtectionDomain();
+        final ProtectionDomain pd = JoliriumServerTest.class.getProtectionDomain();
         final CodeSource cs = pd.getCodeSource();
         final URL location = cs.getLocation();
         final String _file = location.getFile();
         final File base = new File(_file);
         final File profile = new File(base, "test");
-        final JoliriumServer server = new JoliriumServer("*firefox", profile,
-                new URL("http://code.google.com"));
+        final JoliriumServer server = new JoliriumServer("*firefox", profile, new URL("http://code.google.com"));
         final Jolirium jolirium = server.getJolirium();
 
         jolirium.open("/p/jolira-tools/wiki/jolirium");

@@ -5,7 +5,7 @@
   <parent>
     <artifactId>superpom</artifactId>
     <groupId>com.jolira</groupId>
-    <version>1.0.7</version>
+    <version>1.0.14</version>
   </parent>
   <artifactId>jolirium</artifactId>
   <packaging>jar</packaging>
