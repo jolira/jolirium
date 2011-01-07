@@ -8,14 +8,14 @@
   </parent>
   <artifactId>jolirium</artifactId>
   <packaging>jar</packaging>
-  <version>1.1</version>
+  <version>1.1.1-SNAPSHOT</version>
   <name>jolirium</name>
   <url>http://code.google.com/p/jolira-tools/wiki/jolirium</url>
   <description>Reusable Code for Selenium</description>
   <scm>
-    <connection>scm:svn:http://jolira-tools.googlecode.com/svn/jolirium/tags/jolirium-1.1</connection>
-    <developerConnection>scm:svn:https://jolira-tools.googlecode.com/svn/jolirium/tags/jolirium-1.1</developerConnection>
-    <url>http://jolira-tools.googlecode.com/svn/jolirium/tags/jolirium-1.1</url>
+    <connection>scm:svn:http://jolira-tools.googlecode.com/svn/jolirium/trunk</connection>
+    <developerConnection>scm:svn:https://jolira-tools.googlecode.com/svn/jolirium/trunk</developerConnection>
+    <url>http://jolira-tools.googlecode.com/svn/jolirium/trunk</url>
   </scm>
   <properties>
     <selenium-version>2.0b1</selenium-version>
