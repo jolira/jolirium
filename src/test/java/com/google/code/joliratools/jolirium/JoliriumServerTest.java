@@ -12,81 +12,84 @@ import org.junit.Test;
  * @author jfk
  */
 public class JoliriumServerTest {
-    /**
-     * @throws IOException
-     */
-    @Test
-    public void testBasic() throws IOException {
-        JoliriumServer.setNextPortNumber(14567);
+	/**
+	 * @throws IOException
+	 */
+	@Test
+	public void testBasic() throws IOException {
+		JoliriumServer.setNextPortNumber(14567);
 
-        final JoliriumServer server = new JoliriumServer();
-        final Jolirium jolirium = server.getJolirium();
+		final JoliriumServer server = new JoliriumServer();
+		final Jolirium jolirium = server.getJolirium();
 
-        jolirium.open("http://code.google.com/p/jolira-tools/wiki/jolirium");
+		jolirium.open("http://code.google.com/p/jolira-tools/wiki/jolirium");
 
-        final File tmp = File.createTempFile("screenshot", ".png");
-        final String path = tmp.getAbsolutePath();
+		final File tmp = File.createTempFile("screenshot", ".png");
+		final String path = tmp.getAbsolutePath();
 
-        jolirium.captureScreenshot(path);
-        jolirium.close();
+		jolirium.captureScreenshot(path);
+		jolirium.close();
 
-        System.out.print("Screenshot at ");
-        System.out.println(path);
-    }
+		System.out.print("Screenshot at ");
+		System.out.println(path);
+	}
 
-    /**
-     * @throws IOException
-     */
-    @Test
-    public void testProfile() throws IOException {
-        JoliriumServer.setNextPortNumber(14567);
+	/**
+	 * @throws IOException
+	 */
+	@Test
+	public void testProfile() throws IOException {
+		JoliriumServer.setNextPortNumber(14567);
 
-        final ProtectionDomain pd = JoliriumServerTest.class.getProtectionDomain();
-        final CodeSource cs = pd.getCodeSource();
-        final URL location = cs.getLocation();
-        final String _file = location.getFile();
-        final File base = new File(_file);
-        final File profile = new File(base, "test");
-        final JoliriumServer server = new JoliriumServer("*firefox", profile);
-        final Jolirium jolirium = server.getJolirium();
+		final ProtectionDomain pd = JoliriumServerTest.class
+				.getProtectionDomain();
+		final CodeSource cs = pd.getCodeSource();
+		final URL location = cs.getLocation();
+		final String _file = location.getFile();
+		final File base = new File(_file);
+		final File profile = new File(base, "test");
+		final JoliriumServer server = new JoliriumServer("*chrome", profile);
+		final Jolirium jolirium = server.getJolirium();
 
-        jolirium.open("http://code.google.com/p/jolira-tools/wiki/jolirium");
+		jolirium.open("http://code.google.com/p/jolira-tools/wiki/jolirium");
 
-        final File tmp = File.createTempFile("screenshot", ".png");
-        final String path = tmp.getAbsolutePath();
+		final File tmp = File.createTempFile("screenshot", ".png");
+		final String path = tmp.getAbsolutePath();
 
-        jolirium.captureScreenshot(path);
-        jolirium.close();
+		jolirium.captureScreenshot(path);
+		jolirium.close();
 
-        System.out.print("Screenshot at ");
-        System.out.println(path);
-    }
+		System.out.print("Screenshot at ");
+		System.out.println(path);
+	}
 
-    /**
-     * @throws IOException
-     */
-    @Test
-    public void testProfileWithBaseURL() throws IOException {
-        JoliriumServer.setNextPortNumber(14567);
+	/**
+	 * @throws IOException
+	 */
+	@Test
+	public void testProfileWithBaseURL() throws IOException {
+		JoliriumServer.setNextPortNumber(14567);
 
-        final ProtectionDomain pd = JoliriumServerTest.class.getProtectionDomain();
-        final CodeSource cs = pd.getCodeSource();
-        final URL location = cs.getLocation();
-        final String _file = location.getFile();
-        final File base = new File(_file);
-        final File profile = new File(base, "test");
-        final JoliriumServer server = new JoliriumServer("*firefox", profile, new URL("http://code.google.com"));
-        final Jolirium jolirium = server.getJolirium();
+		final ProtectionDomain pd = JoliriumServerTest.class
+				.getProtectionDomain();
+		final CodeSource cs = pd.getCodeSource();
+		final URL location = cs.getLocation();
+		final String _file = location.getFile();
+		final File base = new File(_file);
+		final File profile = new File(base, "test");
+		final JoliriumServer server = new JoliriumServer("*chrome", profile,
+				new URL("http://code.google.com"));
+		final Jolirium jolirium = server.getJolirium();
 
-        jolirium.open("/p/jolira-tools/wiki/jolirium");
+		jolirium.open("/p/jolira-tools/wiki/jolirium");
 
-        final File tmp = File.createTempFile("screenshot", ".png");
-        final String path = tmp.getAbsolutePath();
+		final File tmp = File.createTempFile("screenshot", ".png");
+		final String path = tmp.getAbsolutePath();
 
-        jolirium.captureScreenshot(path);
-        jolirium.close();
+		jolirium.captureScreenshot(path);
+		jolirium.close();
 
-        System.out.print("Screenshot at ");
-        System.out.println(path);
-    }
+		System.out.print("Screenshot at ");
+		System.out.println(path);
+	}
 }
