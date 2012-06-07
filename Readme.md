@@ -29,36 +29,41 @@ following dependency:
 Usage Example
 -------------------
 
-Here is a handy utility class I often use:
+Here is a handy utility class I often use. It reuses a JoliriumServer instance for all tests.
 
 ```
 package com.jolira.test;
+	private static JoliriumServer server = null;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import com.google.code.joliratools.jolirium.Jolirium;
-import com.google.code.joliratools.jolirium.JoliriumServer;
-
-class JoliriumUtil {
-	private static URL getBaseURL() throws MalformedURLException {
+	private static URL getBaseURL() {
 		final String url = System.getenv("MY_BASE_URL");
 
 		if (url == null) {
 			throw new Error("Please define environment variable MY_BASE_URL");
 		}
 
-		return new URL(url);
+		try {
+			return new URL(url);
+		} catch (final MalformedURLException e) {
+			throw new Error("TUX_BASE_URL is not valid", e);
+		}
+	}
+
+	private static synchronized JoliriumServer getServer() {
+		if (server != null) {
+			return server;
+		}
+
+		final URL url = getBaseURL();
+
+		return server = new JoliriumServer("*chrome", null, url);
 	}
 
 	public static Jolirium start() throws Exception {
-		final URL baseURL = getBaseURL();
-		final JoliriumServer seleniumServer = new JoliriumServer("*chrome",
-				null, baseURL);
+		final JoliriumServer svr = getServer();
 
-		return seleniumServer.getJolirium();
+		return svr.getJolirium();
 	}
-}
 ```
 
 Here is a real-life example with a test that uses Jolirium:
