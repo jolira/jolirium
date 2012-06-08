@@ -1,4 +1,4 @@
-Jolirium
+Jolirium [<img src="https://secure.travis-ci.org/jolira/jolirium.png" />](http://travis-ci.org/#!/jolira/jolirium)
 =================
 
 This is a small wrapper that manages Selenium instances and embedded servers. Multiple 
